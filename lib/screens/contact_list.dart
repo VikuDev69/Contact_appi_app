@@ -1,3 +1,5 @@
+import 'package:contacts/screens/add_contact.dart';
+import 'package:contacts/screens/single_contact.dart';
 import 'package:flutter/material.dart';
 
 class ContactList extends StatelessWidget {
@@ -6,19 +8,20 @@ class ContactList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade900,
+      backgroundColor: Color(0xff1C1B1F),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(200),
+        preferredSize: Size.fromHeight(100),
         child: Column(
           children: [
             const SizedBox(height: 60),
-            Padding(
+            Container(
+              color: Color(0xff1C1B1F),
               padding: const EdgeInsets.all(16),
               child: Container(
                   height: 50,
                   width: 400,
                   decoration: const BoxDecoration(
-                      color: Color.fromARGB(255, 52, 57, 71),
+                      color: Color(0xff2A2E36),
                       borderRadius: BorderRadius.all(Radius.circular(25))),
                   child: const TextField(
                     cursorColor: Colors.white,
@@ -41,18 +44,44 @@ class ContactList extends StatelessWidget {
         ),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(16),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: SingleChildScrollView(
             child: Column(
               children: [
-                const SizedBox(height: 30),
-                SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
+                Container(
+                  width: double.infinity,
+                  height: 900,
                   child: ListView.builder(
-                    itemBuilder: (context, index) => ListTile(),
+                    itemCount: 30,
+                    itemBuilder: (context, index) => SingleChildScrollView(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                            top: 10, bottom: 10, left: 5, right: 5),
+                        child: ListTile(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => SingleContact(),
+                            ));
+                          },
+                          onLongPress: () {},
+                          title: const Text(
+                            "Vikas Bharti",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          leading: CircleAvatar(
+                            child: Text("${index + 1}"),
+                            backgroundColor: Colors.blueGrey,
+                          ),
+                          tileColor: Color(0xff1C1B1F),
+                        ),
+                      ),
+                    ),
                   ),
-                )
+                ),
               ],
             ),
           ),
@@ -61,8 +90,11 @@ class ContactList extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(35))),
-        onPressed: () {},
-        backgroundColor: const Color.fromARGB(255, 52, 57, 71),
+        onPressed: () {
+          Navigator.of(context).push(
+              MaterialPageRoute(builder: (context) => const AddContact()));
+        },
+        backgroundColor: const Color(0xff2A2E36),
         child: const Icon(
           Icons.add,
           color: Colors.white,

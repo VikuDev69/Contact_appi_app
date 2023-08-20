@@ -10,7 +10,9 @@ class SingleContact extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.grey.shade900,
         leading: IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
             icon: const Icon(
               Icons.arrow_back,
               color: Colors.white70,

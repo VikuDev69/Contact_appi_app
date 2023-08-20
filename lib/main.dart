@@ -1,4 +1,4 @@
-import 'package:contacts/screens/contact_list.dart';
+import 'package:contacts/screens/homescreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,6 +18,6 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey.shade600),
           useMaterial3: true,
         ),
-        home: const ContactList());
+        home: const HomeScreen());
   }
 }

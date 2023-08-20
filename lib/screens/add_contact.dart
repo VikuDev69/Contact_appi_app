@@ -5,6 +5,23 @@ class AddContact extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Placeholder();
+    return Scaffold(
+      backgroundColor: Color(0xff1C1B1F),
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white70,
+            )),
+        title: const Text(
+          "Add New Contact",
+          style: TextStyle(color: Colors.white70),
+        ),
+        backgroundColor: Color(0xff1C1B1F),
+      ),
+    );
   }
 }
