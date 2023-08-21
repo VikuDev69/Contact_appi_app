@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:get/route_manager.dart';
 
 class SingleContact extends StatelessWidget {
   const SingleContact({super.key});
@@ -11,7 +13,7 @@ class SingleContact extends StatelessWidget {
         backgroundColor: Colors.grey.shade900,
         leading: IconButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              Get.back();
             },
             icon: const Icon(
               Icons.arrow_back,
@@ -25,7 +27,14 @@ class SingleContact extends StatelessWidget {
                 color: Colors.white70,
               )),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Fluttertoast.showToast(
+                    toastLength: Toast.LENGTH_SHORT,
+                    // timeInSecForIosWeb: 1, By default time is 1 second
+                    gravity: ToastGravity.BOTTOM,
+                    msg: 'Added To Favorite',
+                    backgroundColor: Colors.grey.shade900);
+              },
               icon: const Icon(
                 Icons.star_border,
                 color: Colors.white70,

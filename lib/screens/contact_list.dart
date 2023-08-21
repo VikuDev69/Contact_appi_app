@@ -28,16 +28,17 @@ class ContactList extends StatelessWidget {
                     style: TextStyle(
                         color: Colors.white70, fontWeight: FontWeight.w600),
                     decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25)),
-                            borderSide:
-                                BorderSide(style: BorderStyle.none, width: 0)),
-                        hintStyle: TextStyle(color: Colors.white54),
-                        hintText: "Search Contacts",
-                        prefixIcon: Icon(
-                          Icons.search_rounded,
-                          color: Colors.white54,
-                        )),
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(25)),
+                          borderSide:
+                              BorderSide(style: BorderStyle.none, width: 0)),
+                      hintStyle: TextStyle(color: Colors.white54),
+                      hintText: "Search Contacts",
+                      prefixIcon: Icon(
+                        Icons.search_rounded,
+                        color: Colors.white54,
+                      ),
+                    ),
                   )),
             ),
           ],

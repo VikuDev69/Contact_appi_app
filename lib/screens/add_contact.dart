@@ -1,5 +1,6 @@
 import 'package:contacts/widgets/textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:get/route_manager.dart';
 
 class AddContact extends StatefulWidget {
   const AddContact({super.key});
@@ -18,7 +19,7 @@ class _AddContactState extends State<AddContact> {
         centerTitle: false,
         leading: IconButton(
             onPressed: () {
-              Navigator.of(context).pop();
+              Get.back();
             },
             icon: const Icon(
               Icons.arrow_back,
@@ -31,7 +32,18 @@ class _AddContactState extends State<AddContact> {
         backgroundColor: const Color(0xff1C1B1F),
         actions: [
           TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.back();
+                Get.snackbar("Saved Contact", "Contact Saved Successfully",
+                    snackPosition: SnackPosition.BOTTOM,
+                    backgroundColor: Colors.black,
+                    snackStyle: SnackStyle.FLOATING,
+                    isDismissible: true,
+                    dismissDirection: DismissDirection.down,
+                    forwardAnimationCurve: Curves.decelerate,
+                    reverseAnimationCurve: Curves.fastOutSlowIn,
+                    duration: const Duration(milliseconds: 2000));
+              },
               child: const Padding(
                 padding: EdgeInsets.all(8),
                 child: Text(
