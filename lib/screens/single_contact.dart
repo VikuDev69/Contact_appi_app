@@ -47,9 +47,10 @@ class SingleContact extends StatelessWidget {
               ))
         ],
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
+      body: Scrollbar(
+        thickness: 5,
+        interactive: true,
+        child: ListView(
           children: [
             const SizedBox(height: 20),
             const Row(
