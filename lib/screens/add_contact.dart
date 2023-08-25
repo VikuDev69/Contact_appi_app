@@ -54,9 +54,10 @@ class _AddContactState extends State<AddContact> {
               ))
         ],
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
+      body: Scrollbar(
+        thickness: 5,
+        child: ListView(
+          scrollDirection: Axis.vertical,
           children: [
             const SizedBox(height: 30),
             const Row(
@@ -144,6 +145,7 @@ class _AddContactState extends State<AddContact> {
                       SizedBox(
                           width: 350,
                           child: MyTextField(
+                              keyboardType: TextInputType.number,
                               prefixIcon: Icon(
                                 Icons.phone,
                                 color: Colors.white70,
@@ -160,12 +162,45 @@ class _AddContactState extends State<AddContact> {
                       SizedBox(
                           width: 350,
                           child: MyTextField(
+                              keyboardType: TextInputType.number,
                               prefixIcon: Icon(
                                 Icons.email_outlined,
                                 color: Colors.white70,
                               ),
                               labeltext: "Email",
                               obscureText: false)),
+                    ],
+                  ),
+                  SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(width: 5),
+                      SizedBox(
+                          width: 350,
+                          child: MyTextField(
+                              prefixIcon: Icon(
+                                Icons.house,
+                                color: Colors.white70,
+                              ),
+                              labeltext: "Flat/House no.",
+                              obscureText: false))
+                    ],
+                  ),
+                  SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(width: 5),
+                      SizedBox(
+                          width: 350,
+                          child: MyTextField(
+                              prefixIcon: Icon(
+                                Icons.house,
+                                color: Colors.white70,
+                              ),
+                              labeltext: "Flat/House no.",
+                              obscureText: false))
                     ],
                   ),
                 ],

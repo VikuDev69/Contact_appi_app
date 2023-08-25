@@ -37,7 +37,7 @@ class contactlistController extends GetxController {
   Future<void> get_favoritlist() async {
     try {
       var url = 'https://b1.bhaaraterp.com/leads/api/fav-contact-list/';
-      var token = '6fba84eba684a66dfd52213a34327e14dfffb322';
+      var token = '21c3d33f9130ab51e4d4a1c20746e161b70a4da6';
       final response =
           await http.get(Uri.parse(url), headers: {'token': token});
 

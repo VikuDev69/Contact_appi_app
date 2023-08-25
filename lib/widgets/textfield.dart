@@ -31,6 +31,9 @@ class MyTextField extends StatelessWidget {
         obscureText: obscureText,
         validator: validator,
         onChanged: onChanged,
+        // onFieldSubmitted: (_) => FocusScope.of(context).nextFocus(),
+        textInputAction: TextInputAction.next,
+        style: const TextStyle(color: Colors.white),
         decoration: InputDecoration(
             floatingLabelStyle: const TextStyle(
               fontWeight: FontWeight.w500,
