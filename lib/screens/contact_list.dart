@@ -14,7 +14,7 @@ class ContactList extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xff1C1B1F),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(100),
+        preferredSize: const Size.fromHeight(115),
         child: Column(
           children: [
             const SizedBox(height: 60),
