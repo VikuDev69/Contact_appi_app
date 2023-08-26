@@ -82,7 +82,7 @@ class ContactList extends StatelessWidget {
                       itemBuilder: (context, index) => SingleChildScrollView(
                         child: Padding(
                           padding: const EdgeInsets.only(
-                              top: 10, bottom: 10, left: 5, right: 5),
+                              top: 5, bottom: 5, left: 5, right: 5),
                           child: ListTile(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
