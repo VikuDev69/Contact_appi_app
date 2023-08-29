@@ -25,7 +25,7 @@ class _HomeScreen extends State<HomeScreen> {
     return Scaffold(
       body: _pages[_selectedIndex],
       bottomNavigationBar: Container(
-        color: Color(0xff262A30),
+        color: const Color(0xff262A30),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 55.0, vertical: 18),
           child: GNav(

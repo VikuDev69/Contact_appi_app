@@ -1,6 +1,10 @@
+import 'package:contacts/screens/contact_list.dart';
 import 'package:contacts/widgets/textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/route_manager.dart';
+
+import 'controller/controller.dart';
 
 class AddContact extends StatefulWidget {
   const AddContact({super.key});
@@ -10,6 +14,7 @@ class AddContact extends StatefulWidget {
 }
 
 class _AddContactState extends State<AddContact> {
+  final controller = Get.put(contactlistController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,10 +38,11 @@ class _AddContactState extends State<AddContact> {
         actions: [
           TextButton(
               onPressed: () {
-                Get.back();
+                Get.off(ContactList());
+                controller.getcontactlist();
                 Get.snackbar("Saved Contact", "Contact Saved Successfully",
                     snackPosition: SnackPosition.BOTTOM,
-                    backgroundColor: Colors.black,
+                    backgroundColor: Colors.green,
                     snackStyle: SnackStyle.FLOATING,
                     isDismissible: true,
                     dismissDirection: DismissDirection.down,
@@ -91,38 +97,49 @@ class _AddContactState extends State<AddContact> {
               ],
             ),
             const SizedBox(height: 40),
-            const Padding(
-              padding: EdgeInsets.all(8.0),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       SizedBox(
                           width: 350,
                           child: MyTextField(
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.person_4_outlined,
                                 color: Colors.white70,
                               ),
                               labeltext: "First Name",
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Can not Be Empty';
+                                }
+                              },
                               obscureText: false)),
                     ],
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       SizedBox(
                           width: 350,
                           child: MyTextField(
-                              labeltext: "Last Name", obscureText: false)),
+                              labeltext: "Last Name",
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Can not Be Empty';
+                                }
+                              },
+                              obscureText: false)),
                     ],
                   ),
-                  SizedBox(height: 15),
-                  Row(
+                  const SizedBox(height: 15),
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(width: 5),
@@ -137,70 +154,294 @@ class _AddContactState extends State<AddContact> {
                               obscureText: false)),
                     ],
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       SizedBox(
                           width: 350,
                           child: MyTextField(
                               keyboardType: TextInputType.number,
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.phone,
                                 color: Colors.white70,
                               ),
                               labeltext: "Phone",
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Can not Be Empty';
+                                }
+                              },
                               obscureText: false)),
                     ],
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       SizedBox(
                           width: 350,
                           child: MyTextField(
-                              keyboardType: TextInputType.number,
-                              prefixIcon: Icon(
+                              keyboardType: TextInputType.emailAddress,
+                              prefixIcon: const Icon(
                                 Icons.email_outlined,
                                 color: Colors.white70,
                               ),
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Can not Be Empty';
+                                } else if (RegExp(
+                                            r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
+                                        .hasMatch(value) !=
+                                    true) {
+                                  return 'enter valid email id';
+                                }
+                              },
                               labeltext: "Email",
                               obscureText: false)),
                     ],
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       SizedBox(
                           width: 350,
                           child: MyTextField(
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.house,
                                 color: Colors.white70,
                               ),
-                              labeltext: "Flat/House no.",
+                              labeltext: "Other Phone",
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Can not Be Empty';
+                                }
+                              },
                               obscureText: false))
                     ],
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      SizedBox(width: 5),
+                      const SizedBox(width: 5),
                       SizedBox(
                           width: 350,
                           child: MyTextField(
-                              prefixIcon: Icon(
+                              prefixIcon: const Icon(
                                 Icons.house,
                                 color: Colors.white70,
                               ),
-                              labeltext: "Flat/House no.",
+                              labeltext: "Other Email",
+                              validator: (value) {
+                                if (value!.isEmpty) {
+                                  return 'Can not Be Empty';
+                                }
+                              },
                               obscureText: false))
+                    ],
+                  ),
+                  const SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(width: 5),
+                      Container(
+                          width: 350,
+                          decoration: const ShapeDecoration(
+                            shape: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(width: 2, color: Colors.blueGrey),
+                            ),
+                          ),
+                          child: ListTile(
+                            trailing: const Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.white,
+                            ),
+                            onTap: () {
+                              showDialog<void>(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      titleTextStyle: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w800),
+                                      backgroundColor: Colors.grey.shade900,
+                                      surfaceTintColor: Colors.grey.shade900,
+                                      title: const Text("Select Country"),
+                                      content: Container(
+                                        color: Colors.grey.shade900,
+                                        height: 600,
+                                        width: 300,
+                                        child: Container(
+                                          height: 500,
+                                          child: ListView.builder(
+                                              itemCount:
+                                                  controller.countryList.length,
+                                              itemBuilder: (context, index) =>
+                                                  ListTile(
+                                                    title: Text(
+                                                      "${controller.countryList[index]['name']}",
+                                                      style: const TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 21,
+                                                          fontWeight:
+                                                              FontWeight.w700),
+                                                    ),
+                                                    onTap: () {
+                                                      Get.back();
+                                                    },
+                                                  )),
+                                        ),
+                                      ),
+                                    );
+                                  });
+                            },
+                            title: const Text(
+                              "Select Country",
+                              style: TextStyle(color: Colors.white54),
+                            ),
+                          ))
+                    ],
+                  ),
+                  const SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(width: 5),
+                      Container(
+                          width: 350,
+                          decoration: const ShapeDecoration(
+                            shape: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(width: 2, color: Colors.blueGrey),
+                            ),
+                          ),
+                          child: ListTile(
+                            trailing: const Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.white,
+                            ),
+                            onTap: () {
+                              showDialog<void>(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      titleTextStyle: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w800),
+                                      backgroundColor: Colors.grey.shade900,
+                                      surfaceTintColor: Colors.grey.shade900,
+                                      title: const Text(
+                                        "Select State",
+                                      ),
+                                      content: Container(
+                                        color: Colors.grey.shade900,
+                                        height: 600,
+                                        width: 300,
+                                        child: Container(
+                                          height: 500,
+                                          child: ListView.builder(
+                                              itemCount:
+                                                  controller.stateList.length,
+                                              itemBuilder: (context, index) =>
+                                                  ListTile(
+                                                    title: Text(
+                                                      "${controller.stateList[index]['state']}",
+                                                      style: const TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 21,
+                                                          fontWeight:
+                                                              FontWeight.w700),
+                                                    ),
+                                                    onTap: () {
+                                                      Get.back();
+                                                    },
+                                                  )),
+                                        ),
+                                      ),
+                                    );
+                                  });
+                            },
+                            title: const Text(
+                              "Select State",
+                              style: TextStyle(color: Colors.white54),
+                            ),
+                          ))
+                    ],
+                  ),
+                  const SizedBox(height: 15),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const SizedBox(width: 5),
+                      Container(
+                          width: 350,
+                          decoration: const ShapeDecoration(
+                            shape: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(width: 2, color: Colors.blueGrey),
+                            ),
+                          ),
+                          child: ListTile(
+                            trailing: const Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.white,
+                            ),
+                            onTap: () {
+                              showDialog<void>(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      titleTextStyle: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 22,
+                                          fontWeight: FontWeight.w800),
+                                      backgroundColor: Colors.grey.shade900,
+                                      surfaceTintColor: Colors.grey.shade900,
+                                      title: const Text(
+                                        "Select City",
+                                      ),
+                                      content: Container(
+                                        color: Colors.grey.shade900,
+                                        height: 600,
+                                        width: 300,
+                                        child: Container(
+                                          height: 500,
+                                          child: ListView.builder(
+                                              itemCount:
+                                                  controller.cityList.length,
+                                              itemBuilder: (context, index) =>
+                                                  ListTile(
+                                                    title: Text(
+                                                      "${controller.cityList[index]['city']}",
+                                                      style: const TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 21,
+                                                          fontWeight:
+                                                              FontWeight.w700),
+                                                    ),
+                                                    onTap: () {
+                                                      Get.back();
+                                                    },
+                                                  )),
+                                        ),
+                                      ),
+                                    );
+                                  });
+                            },
+                            title: const Text(
+                              "Select City",
+                              style: TextStyle(color: Colors.white54),
+                            ),
+                          ))
                     ],
                   ),
                 ],

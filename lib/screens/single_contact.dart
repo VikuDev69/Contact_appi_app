@@ -11,6 +11,7 @@ class SingleContact extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final controller = Get.put(contactlistController());
+    // var isinfavourite = controller.conatctlist[index]['is_fav_contact'].obs;
     return Scaffold(
       backgroundColor: Colors.grey.shade900,
       appBar: AppBar(
@@ -39,9 +40,19 @@ class SingleContact extends StatelessWidget {
                     msg: 'Added To Favorite',
                     backgroundColor: Colors.grey.shade900);
               },
-              icon: const Icon(
-                Icons.star_border,
+              icon: IconButton(
+                onPressed: () {
+                  // if (isinfavourite.value == true) {
+                  //   remoe;
+                  //   isinfavourite.value = false;
+                  // } else {
+                  //   add;
+                  //   isinfavourite.value = true;
+                  // }
+                },
+                icon: Icon(Icons.star_border),
                 color: Colors.white70,
+                // color: isinfavourite.value == true ? Colors.pink : Colors.grey,
               )),
           IconButton(
               onPressed: () {},
@@ -268,33 +279,40 @@ class SingleContact extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 15),
-                            ListTile(
-                              leading: const Icon(
-                                Icons.location_city,
-                                color: Colors.white,
-                                size: 30,
-                              ),
-                              title: Text(
-                                controller.singlecantact[index]['other_city'] ??
-                                    "",
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w400),
-                              ),
-                              subtitle: Text(
-                                controller.singlecantact[index]['other_state'] +
-                                        ", " +
-                                        controller.singlecantact[index]
-                                            ['other_code'] +
-                                        "" +
-                                        controller.singlecantact[index]
-                                            ['other_country'] ??
-                                    "",
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w400),
+                            Visibility(
+                              visible: controller
+                                      .singlecantact[index]['mailing_city']
+                                      .isEmpty
+                                  ? false
+                                  : true,
+                              child: ListTile(
+                                leading: const Icon(
+                                  Icons.location_city,
+                                  color: Colors.white,
+                                  size: 30,
+                                ),
+                                title: Text(
+                                  controller.singlecantact[index]
+                                          ['mailing_city'] ??
+                                      "",
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                subtitle: Text(
+                                  controller.singlecantact[index]
+                                              ['mailing_state'] +
+                                          ", " +
+                                          controller.singlecantact[index]
+                                              ['mailing_code'] +
+                                          "" ??
+                                      "",
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400),
+                                ),
                               ),
                             ),
                             const SizedBox(height: 15),
@@ -305,11 +323,12 @@ class SingleContact extends StatelessWidget {
                                 size: 30,
                               ),
                               title: Text(
-                                controller.singlecantact[index]['other_country']
+                                controller
+                                        .singlecantact[index]['mailing_country']
                                         .isEmpty
                                     ? "India"
                                     : controller.singlecantact[index]
-                                        ['other_country'],
+                                        ['mailing_country'],
                                 style: const TextStyle(
                                     color: Colors.white,
                                     fontSize: 16,

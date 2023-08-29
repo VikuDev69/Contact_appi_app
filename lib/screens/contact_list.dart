@@ -77,35 +77,42 @@ class ContactList extends StatelessWidget {
                     radius: const Radius.circular(25),
                     scrollbarOrientation: ScrollbarOrientation.right,
                     child: ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: controller.conatctlist.length,
-                      itemBuilder: (context, index) => SingleChildScrollView(
-                        child: Padding(
-                          padding: const EdgeInsets.only(
-                              top: 5, bottom: 5, left: 5, right: 5),
-                          child: ListTile(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => SingleContact(),
-                              ));
-                            },
-                            onLongPress: () {},
-                            title: Text(
-                              controller.conatctlist[index]['first_name'] ?? '',
-                              style: const TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w600,
+                        shrinkWrap: true,
+                        itemCount: controller.conatctlist.length,
+                        itemBuilder: (context, index) {
+                          return SingleChildScrollView(
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  top: 5, bottom: 5, left: 5, right: 5),
+                              child: ListTile(
+                                onTap: () {
+                                  Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => SingleContact(),
+                                  ));
+                                },
+                                onLongPress: () {},
+                                title: Row(
+                                  children: [
+                                    Text(
+                                      controller.conatctlist[index]
+                                              ['first_name'] ??
+                                          '',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                leading: CircleAvatar(
+                                  child: Text("${index + 1}"),
+                                  backgroundColor: Colors.blueGrey,
+                                ),
+                                tileColor: Color(0xff1C1B1F),
                               ),
                             ),
-                            leading: CircleAvatar(
-                              child: Text("${index + 1}"),
-                              backgroundColor: Colors.blueGrey,
-                            ),
-                            tileColor: Color(0xff1C1B1F),
-                          ),
-                        ),
-                      ),
-                    ),
+                          );
+                        }),
                   ),
           ),
         ),
